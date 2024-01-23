@@ -6,8 +6,8 @@ pipeline {
     stages {
         stage('checkout') {
             steps {
-                sh 'rm -rf Parcel-service'
-                sh 'git clone https://github.com/sanjay0288/Parcel-service.git'
+                sh 'rm -rf deployingtomcat'
+                sh 'git clone https://github.com/sanjay0288/firstSpringBootApplication.git'
             }
         }
 
@@ -51,7 +51,7 @@ pipeline {
         stage('deploy') {
             steps {
                 sh 'ssh root@172.31.15.207'
-                sh "curl -v --user sanj:sanj --upload-file /home/slave1/workspace/deployingtomcat/target/firstSpringBootApplication-0.0.1-SNAPSHOT.war "http://13.233.9.29:8081/manager/text/deploy?path=/firstSpringBootApplication-0.0.1-SNAPSHOT"
+                sh 'curl -v --user sanj:sanj --upload-file /home/slave1/workspace/deployingtomcat/target/firstSpringBootApplication-0.0.1-SNAPSHOT.war "http://13.233.9.29:8081/manager/text/deploy?path=/firstSpringBootApplication-0.0.1-SNAPSHOT'
             }
         }
         
