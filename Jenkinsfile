@@ -51,7 +51,7 @@ pipeline {
         stage('deploy') {
             steps {
                 sh 'ssh root@172.31.15.207'
-                sh "scp /home/slave1/workspace/deployingtomcat/target/firstSpringBootApplication-0.0.1-SNAPSHOT.jar root@172.31.15.207:/opt/apache-tomcat-8.5.98/webapps"
+                sh "curl -v --user sanj:sanj --upload-file /home/slave1/workspace/deployingtomcat/target/firstSpringBootApplication-0.0.1-SNAPSHOT.war "http://13.233.9.29:8081/manager/text/deploy?path=/firstSpringBootApplication-0.0.1-SNAPSHOT"
             }
         }
         
